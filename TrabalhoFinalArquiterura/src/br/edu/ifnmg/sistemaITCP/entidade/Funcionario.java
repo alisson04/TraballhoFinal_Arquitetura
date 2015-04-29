@@ -11,26 +11,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author Amauri
  */
 @Entity
-@Table(name = "usuarios")
-public class Usuario implements Serializable {
+public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "userName", length = 20, unique = true, nullable = true)
-    private String userName;
-
-    @Column(name = "password", length = 20, nullable = true)
-    private String password;
+    @Column(name = "cargo", length = 20, nullable = false)
+    private String cargo;
 
     public Long getId() {
         return id;
@@ -40,20 +35,12 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     @Override
@@ -66,10 +53,10 @@ public class Usuario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
+        if (!(object instanceof Funcionario)) {
             return false;
         }
-        Usuario other = (Usuario) object;
+        Funcionario other = (Funcionario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -78,7 +65,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Usuario[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Funcionario[ id=" + id + " ]";
     }
 
 }

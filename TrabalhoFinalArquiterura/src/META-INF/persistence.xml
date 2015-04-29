@@ -3,6 +3,8 @@
   <persistence-unit name="TrabalhoFinal_Arquiterura_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifnmg.sistemaITCP.entidade.Usuario</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Produto</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Funcionario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgdb_arquitetura?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>
