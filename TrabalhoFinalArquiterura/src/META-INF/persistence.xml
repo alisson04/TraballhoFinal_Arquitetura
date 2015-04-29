@@ -5,6 +5,18 @@
     <class>br.edu.ifnmg.sistemaITCP.entidade.Usuario</class>
     <class>br.edu.ifnmg.sistemaITCP.entidade.Produto</class>
     <class>br.edu.ifnmg.sistemaITCP.entidade.Funcionario</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.GrupoSolidario</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Transacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.itensTransacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Emprestimo</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Associacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Cooperativa</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Doacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Atividade</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Pessoa</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.Acao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.ParticipaAcao</class>
+    <class>br.edu.ifnmg.sistemaITCP.entidade.ParticipaAtividade</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgdb_arquitetura?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>
