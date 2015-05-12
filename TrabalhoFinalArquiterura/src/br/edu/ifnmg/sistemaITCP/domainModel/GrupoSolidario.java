@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -17,30 +17,24 @@ import javax.persistence.Id;
  * @author Amauri
  */
 @Entity
-public class Pessoa implements Serializable {
+public class GrupoSolidario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome", length = 255, nullable = false)
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "endereco", nullable = false, length = 255)
-    private String endereco;
+    @Column(name = "cnpf", length = 20, nullable = false)
+    private String cnpj;
 
-    @Column(name = "telefone", nullable = false, length = 10)
+    @Column(name = "telefone", length = 10, nullable = false)
     private String telefone;
 
-    @Column(name = "tipo", length = 30, nullable = false)
-    private String tipo;
-
-    @Column(name = "cpf", length = 11, nullable = false)
-    private String cpf;
-
-    @Column(name = "rg", length = 11, nullable = false)
-    private String rg;
+    @Column(name = "endereco", length = 255, nullable = false)
+    private String endereco;
 
     public Long getId() {
         return id;
@@ -58,12 +52,12 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getTelefone() {
@@ -74,28 +68,12 @@ public class Pessoa implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     @Override
@@ -108,10 +86,10 @@ public class Pessoa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pessoa)) {
+        if (!(object instanceof GrupoSolidario)) {
             return false;
         }
-        Pessoa other = (Pessoa) object;
+        GrupoSolidario other = (GrupoSolidario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -120,7 +98,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Pessoa[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.GrupoSolidario[ id=" + id + " ]";
     }
 
 }

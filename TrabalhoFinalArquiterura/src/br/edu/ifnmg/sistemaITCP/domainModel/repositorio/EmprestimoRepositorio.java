@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade.repositorio;
+package br.edu.ifnmg.sistemaITCP.domainModel.repositorio;
 
-import br.edu.ifnmg.sistemaITCP.entidade.GrupoSolidario;
+import br.edu.ifnmg.sistemaITCP.domainModel.Emprestimo;
 
 /**
  *
  * @author Amauri
  */
-public interface GrupoSolidarioRepositorio  extends Repositorio<GrupoSolidario>{
+public interface EmprestimoRepositorio extends Repositorio<Emprestimo>{
     
 }

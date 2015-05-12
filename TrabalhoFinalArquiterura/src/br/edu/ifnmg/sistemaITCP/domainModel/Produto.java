@@ -3,33 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
+import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Amauri
  */
 @Entity
-public class ParticipaAtividade implements Serializable {
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Pessoa pessoa;
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Atividade atividade;
+    @Column(name = "descricao", length = 100, nullable = false)
+    private String descricao;
+
+    @Column(name = "valor_unitario", nullable = false)
+    private BigDecimal valorUnitario;
 
     public Long getId() {
         return id;
@@ -39,20 +42,28 @@ public class ParticipaAtividade implements Serializable {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getNome() {
+        return nome;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Atividade getAtividade() {
-        return atividade;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     @Override
@@ -65,10 +76,10 @@ public class ParticipaAtividade implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ParticipaAtividade)) {
+        if (!(object instanceof Produto)) {
             return false;
         }
-        ParticipaAtividade other = (ParticipaAtividade) object;
+        Produto other = (Produto) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -77,7 +88,7 @@ public class ParticipaAtividade implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.ParticipaAtividade[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Produto[ id=" + id + " ]";
     }
 
 }

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,32 +22,33 @@ import javax.persistence.TemporalType;
  * @author Amauri
  */
 @Entity
-public class Transacao implements Serializable {
+public class Atividade implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "tipo", length = 100, nullable = false)
+    @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
-    @Column(name = "valor", nullable = false)
-    private BigDecimal valor;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_inicio", nullable = false)
+    private Date dataInicio;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_transacao", nullable = false)
-    private Date dataTransacao;
+    @Column(name = "data_termino", nullable = false)
+    private Date dataTermino;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private GrupoSolidario grupoSolidario;
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTipo() {
@@ -59,20 +59,20 @@ public class Transacao implements Serializable {
         this.tipo = tipo;
     }
 
-    public BigDecimal getValor() {
-        return valor;
+    public Date getDataInicio() {
+        return dataInicio;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public Date getDataTransacao() {
-        return dataTransacao;
+    public Date getDataTermino() {
+        return dataTermino;
     }
 
-    public void setDataTransacao(Date dataTransacao) {
-        this.dataTransacao = dataTransacao;
+    public void setDataTermino(Date dataTermino) {
+        this.dataTermino = dataTermino;
     }
 
     public GrupoSolidario getGrupoSolidario() {
@@ -93,10 +93,10 @@ public class Transacao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transacao)) {
+        if (!(object instanceof Atividade)) {
             return false;
         }
-        Transacao other = (Transacao) object;
+        Atividade other = (Atividade) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,7 +105,7 @@ public class Transacao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Transacao[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Atividade[ id=" + id + " ]";
     }
 
 }

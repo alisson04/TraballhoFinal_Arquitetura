@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,18 +19,21 @@ import javax.persistence.ManyToOne;
  * @author Amauri
  */
 @Entity
-public class ParticipaAcao implements Serializable {
+public class itensTransacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Pessoa pessoa;
+    @Column(name = "quantidade")
+    private int quantidade;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Doacao doacao;
+    private Produto produto;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Transacao transacao;
 
     public Long getId() {
         return id;
@@ -39,20 +43,28 @@ public class ParticipaAcao implements Serializable {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public Doacao getDoacao() {
-        return doacao;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setDoacao(Doacao doacao) {
-        this.doacao = doacao;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public Transacao getTransacao() {
+        return transacao;
+    }
+
+    public void setTransacao(Transacao transacao) {
+        this.transacao = transacao;
     }
 
     @Override
@@ -65,10 +77,10 @@ public class ParticipaAcao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ParticipaAcao)) {
+        if (!(object instanceof itensTransacao)) {
             return false;
         }
-        ParticipaAcao other = (ParticipaAcao) object;
+        itensTransacao other = (itensTransacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -77,7 +89,7 @@ public class ParticipaAcao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.ParticipaAcao[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.itensTransacao[ id=" + id + " ]";
     }
 
 }

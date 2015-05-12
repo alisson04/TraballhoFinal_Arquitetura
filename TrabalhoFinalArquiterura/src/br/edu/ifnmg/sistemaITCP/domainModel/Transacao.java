@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,22 +23,22 @@ import javax.persistence.TemporalType;
  * @author Amauri
  */
 @Entity
-public class Doacao implements Serializable {
+public class Transacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "tipo", length = 50, nullable = false)
+    @Column(name = "tipo", length = 100, nullable = false)
     private String tipo;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_doacao", nullable = false)
-    private Date dataDoacao;
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
-    @Column(name = "entidade_doadora", length = 50, nullable = false)
-    private String entidadeDoadora;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_transacao", nullable = false)
+    private Date dataTransacao;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private GrupoSolidario grupoSolidario;
@@ -58,20 +59,20 @@ public class Doacao implements Serializable {
         this.tipo = tipo;
     }
 
-    public Date getDataDoacao() {
-        return dataDoacao;
+    public BigDecimal getValor() {
+        return valor;
     }
 
-    public void setDataDoacao(Date dataDoacao) {
-        this.dataDoacao = dataDoacao;
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 
-    public String getEntidadeDoadora() {
-        return entidadeDoadora;
+    public Date getDataTransacao() {
+        return dataTransacao;
     }
 
-    public void setEntidadeDoadora(String entidadeDoadora) {
-        this.entidadeDoadora = entidadeDoadora;
+    public void setDataTransacao(Date dataTransacao) {
+        this.dataTransacao = dataTransacao;
     }
 
     public GrupoSolidario getGrupoSolidario() {
@@ -92,10 +93,10 @@ public class Doacao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Doacao)) {
+        if (!(object instanceof Transacao)) {
             return false;
         }
-        Doacao other = (Doacao) object;
+        Transacao other = (Transacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,7 +105,7 @@ public class Doacao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Doacao[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Transacao[ id=" + id + " ]";
     }
 
 }

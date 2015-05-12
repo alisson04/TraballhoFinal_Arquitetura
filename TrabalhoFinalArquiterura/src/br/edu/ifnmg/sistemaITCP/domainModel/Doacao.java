@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,28 +14,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Amauri
  */
 @Entity
-public class Funcionario implements Serializable {
+public class Doacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "cargo", length = 20, nullable = false)
-    private String cargo;
+    @Column(name = "tipo", length = 50, nullable = false)
+    private String tipo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Usuario usuario;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_doacao", nullable = false)
+    private Date dataDoacao;
+
+    @Column(name = "entidade_doadora", length = 50, nullable = false)
+    private String entidadeDoadora;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Pessoa pessoa;
+    private GrupoSolidario grupoSolidario;
 
     public Long getId() {
         return id;
@@ -44,28 +50,36 @@ public class Funcionario implements Serializable {
         this.id = id;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Date getDataDoacao() {
+        return dataDoacao;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setDataDoacao(Date dataDoacao) {
+        this.dataDoacao = dataDoacao;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getEntidadeDoadora() {
+        return entidadeDoadora;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setEntidadeDoadora(String entidadeDoadora) {
+        this.entidadeDoadora = entidadeDoadora;
+    }
+
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
+    }
+
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override
@@ -78,10 +92,10 @@ public class Funcionario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Funcionario)) {
+        if (!(object instanceof Doacao)) {
             return false;
         }
-        Funcionario other = (Funcionario) object;
+        Doacao other = (Doacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -90,7 +104,7 @@ public class Funcionario implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Funcionario[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Doacao[ id=" + id + " ]";
     }
 
 }

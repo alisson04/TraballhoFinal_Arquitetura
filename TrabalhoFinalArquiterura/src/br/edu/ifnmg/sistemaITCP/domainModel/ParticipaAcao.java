@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,21 +18,18 @@ import javax.persistence.ManyToOne;
  * @author Amauri
  */
 @Entity
-public class itensTransacao implements Serializable {
+public class ParticipaAcao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "quantidade")
-    private int quantidade;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Pessoa pessoa;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Produto produto;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Transacao transacao;
+    private Doacao doacao;
 
     public Long getId() {
         return id;
@@ -43,28 +39,20 @@ public class itensTransacao implements Serializable {
         this.id = id;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public Doacao getDoacao() {
+        return doacao;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public Transacao getTransacao() {
-        return transacao;
-    }
-
-    public void setTransacao(Transacao transacao) {
-        this.transacao = transacao;
+    public void setDoacao(Doacao doacao) {
+        this.doacao = doacao;
     }
 
     @Override
@@ -77,10 +65,10 @@ public class itensTransacao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof itensTransacao)) {
+        if (!(object instanceof ParticipaAcao)) {
             return false;
         }
-        itensTransacao other = (itensTransacao) object;
+        ParticipaAcao other = (ParticipaAcao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -89,7 +77,7 @@ public class itensTransacao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.itensTransacao[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.ParticipaAcao[ id=" + id + " ]";
     }
 
 }

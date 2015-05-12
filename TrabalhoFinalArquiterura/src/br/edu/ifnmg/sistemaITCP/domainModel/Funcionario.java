@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,24 +13,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Amauri
  */
 @Entity
-public class Cooperativa implements Serializable {
+public class Funcionario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "capital_inicial", nullable = false)
-    private BigDecimal capitalInicial;
+    @Column(name = "cargo", length = 20, nullable = false)
+    private String cargo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private GrupoSolidario grupoSolidario;
+    private Pessoa pessoa;
 
     public Long getId() {
         return id;
@@ -41,20 +44,28 @@ public class Cooperativa implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getCapitalInicial() {
-        return capitalInicial;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setCapitalInicial(BigDecimal capitalInicial) {
-        this.capitalInicial = capitalInicial;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public GrupoSolidario getGrupoSolidario() {
-        return grupoSolidario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
-        this.grupoSolidario = grupoSolidario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override
@@ -67,10 +78,10 @@ public class Cooperativa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cooperativa)) {
+        if (!(object instanceof Funcionario)) {
             return false;
         }
-        Cooperativa other = (Cooperativa) object;
+        Funcionario other = (Funcionario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -79,7 +90,7 @@ public class Cooperativa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Cooperativa[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Funcionario[ id=" + id + " ]";
     }
 
 }

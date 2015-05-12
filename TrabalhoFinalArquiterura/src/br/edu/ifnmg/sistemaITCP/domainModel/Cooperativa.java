@@ -3,36 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Amauri
  */
 @Entity
-public class Produto implements Serializable {
+public class Cooperativa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome", length = 100, nullable = false)
-    private String nome;
+    @Column(name = "capital_inicial", nullable = false)
+    private BigDecimal capitalInicial;
 
-    @Column(name = "descricao", length = 100, nullable = false)
-    private String descricao;
-
-    @Column(name = "valor_unitario", nullable = false)
-    private BigDecimal valorUnitario;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GrupoSolidario grupoSolidario;
 
     public Long getId() {
         return id;
@@ -42,28 +41,20 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public BigDecimal getCapitalInicial() {
+        return capitalInicial;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCapitalInicial(BigDecimal capitalInicial) {
+        this.capitalInicial = capitalInicial;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public BigDecimal getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override
@@ -76,10 +67,10 @@ public class Produto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produto)) {
+        if (!(object instanceof Cooperativa)) {
             return false;
         }
-        Produto other = (Produto) object;
+        Cooperativa other = (Cooperativa) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,7 +79,7 @@ public class Produto implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.Produto[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Cooperativa[ id=" + id + " ]";
     }
 
 }

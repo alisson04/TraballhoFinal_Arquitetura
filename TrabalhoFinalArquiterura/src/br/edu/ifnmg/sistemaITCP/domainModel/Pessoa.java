@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.sistemaITCP.entidade;
+package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -17,24 +17,30 @@ import javax.persistence.Id;
  * @author Amauri
  */
 @Entity
-public class GrupoSolidario implements Serializable {
+public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
-    @Column(name = "cnpf", length = 20, nullable = false)
-    private String cnpj;
+    @Column(name = "endereco", nullable = false, length = 255)
+    private String endereco;
 
-    @Column(name = "telefone", length = 10, nullable = false)
+    @Column(name = "telefone", nullable = false, length = 10)
     private String telefone;
 
-    @Column(name = "endereco", length = 255, nullable = false)
-    private String endereco;
+    @Column(name = "tipo", length = 30, nullable = false)
+    private String tipo;
+
+    @Column(name = "cpf", length = 11, nullable = false)
+    private String cpf;
+
+    @Column(name = "rg", length = 11, nullable = false)
+    private String rg;
 
     public Long getId() {
         return id;
@@ -52,12 +58,12 @@ public class GrupoSolidario implements Serializable {
         this.nome = nome;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -68,12 +74,28 @@ public class GrupoSolidario implements Serializable {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     @Override
@@ -86,10 +108,10 @@ public class GrupoSolidario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GrupoSolidario)) {
+        if (!(object instanceof Pessoa)) {
             return false;
         }
-        GrupoSolidario other = (GrupoSolidario) object;
+        Pessoa other = (Pessoa) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +120,7 @@ public class GrupoSolidario implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.sistemaITCP.entidade.GrupoSolidario[ id=" + id + " ]";
+        return "br.edu.ifnmg.sistemaITCP.entidade.Pessoa[ id=" + id + " ]";
     }
 
 }
