@@ -8,11 +8,13 @@ package br.edu.ifnmg.sistemaITCP.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -37,6 +39,9 @@ public class Transacao implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "data_transacao", nullable = false)
     private Date dataTransacao;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GrupoSolidario grupoSolidario;
 
     public Long getId() {
         return id;
@@ -68,6 +73,14 @@ public class Transacao implements Serializable {
 
     public void setDataTransacao(Date dataTransacao) {
         this.dataTransacao = dataTransacao;
+    }
+
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
+    }
+
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override

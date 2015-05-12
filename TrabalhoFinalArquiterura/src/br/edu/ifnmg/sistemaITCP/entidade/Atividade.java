@@ -7,11 +7,15 @@ package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,11 +32,20 @@ public class Atividade implements Serializable {
     @Column(name = "tipo", nullable = false, length = 10)
     private String tipo;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "data_inicio", nullable = false)
     private Date dataInicio;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "data_termino", nullable = false)
     private Date dataTermino;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GrupoSolidario grupoSolidario;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -62,8 +75,12 @@ public class Atividade implements Serializable {
         this.dataTermino = dataTermino;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
+    }
+
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override

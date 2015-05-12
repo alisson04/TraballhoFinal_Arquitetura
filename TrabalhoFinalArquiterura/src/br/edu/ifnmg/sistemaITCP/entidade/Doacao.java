@@ -7,11 +7,15 @@ package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,11 +32,15 @@ public class Doacao implements Serializable {
     @Column(name = "tipo", length = 50, nullable = false)
     private String tipo;
 
-    @Column(name = "data", nullable = false)
-    private Date data;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_doacao", nullable = false)
+    private Date dataDoacao;
 
     @Column(name = "entidade_doadora", length = 50, nullable = false)
     private String entidadeDoadora;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GrupoSolidario grupoSolidario;
 
     public Long getId() {
         return id;
@@ -50,12 +58,12 @@ public class Doacao implements Serializable {
         this.tipo = tipo;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataDoacao() {
+        return dataDoacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataDoacao(Date dataDoacao) {
+        this.dataDoacao = dataDoacao;
     }
 
     public String getEntidadeDoadora() {
@@ -64,6 +72,14 @@ public class Doacao implements Serializable {
 
     public void setEntidadeDoadora(String entidadeDoadora) {
         this.entidadeDoadora = entidadeDoadora;
+    }
+
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
+    }
+
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override

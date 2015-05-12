@@ -6,10 +6,12 @@
 package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,10 +19,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class ParticipaAcao implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Pessoa pessoa;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Doacao doacao;
 
     public Long getId() {
         return id;
@@ -28,6 +37,22 @@ public class ParticipaAcao implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Doacao getDoacao() {
+        return doacao;
+    }
+
+    public void setDoacao(Doacao doacao) {
+        this.doacao = doacao;
     }
 
     @Override
@@ -54,5 +79,5 @@ public class ParticipaAcao implements Serializable {
     public String toString() {
         return "br.edu.ifnmg.sistemaITCP.entidade.ParticipaAcao[ id=" + id + " ]";
     }
-    
+
 }

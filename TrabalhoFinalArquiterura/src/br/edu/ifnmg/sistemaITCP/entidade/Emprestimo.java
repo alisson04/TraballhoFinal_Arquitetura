@@ -8,11 +8,13 @@ package br.edu.ifnmg.sistemaITCP.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -43,6 +45,9 @@ public class Emprestimo implements Serializable {
 
     @Column(name = "juros_mensal", nullable = false)
     private BigDecimal jurosMensal;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Cooperativa cooperativa;
 
     public Long getId() {
         return id;
@@ -90,6 +95,14 @@ public class Emprestimo implements Serializable {
 
     public void setJurosMensal(BigDecimal jurosMensal) {
         this.jurosMensal = jurosMensal;
+    }
+
+    public Cooperativa getCooperativa() {
+        return cooperativa;
+    }
+
+    public void setCooperativa(Cooperativa cooperativa) {
+        this.cooperativa = cooperativa;
     }
 
     @Override

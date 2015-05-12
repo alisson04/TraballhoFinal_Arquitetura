@@ -7,11 +7,13 @@ package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -28,6 +30,9 @@ public class Cooperativa implements Serializable {
     @Column(name = "capital_inicial", nullable = false)
     private BigDecimal capitalInicial;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private GrupoSolidario grupoSolidario;
+
     public Long getId() {
         return id;
     }
@@ -42,6 +47,14 @@ public class Cooperativa implements Serializable {
 
     public void setCapitalInicial(BigDecimal capitalInicial) {
         this.capitalInicial = capitalInicial;
+    }
+
+    public GrupoSolidario getGrupoSolidario() {
+        return grupoSolidario;
+    }
+
+    public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
+        this.grupoSolidario = grupoSolidario;
     }
 
     @Override

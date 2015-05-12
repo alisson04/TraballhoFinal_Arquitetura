@@ -6,11 +6,14 @@
 package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,6 +30,12 @@ public class Funcionario implements Serializable {
     @Column(name = "cargo", length = 20, nullable = false)
     private String cargo;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Pessoa pessoa;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +50,22 @@ public class Funcionario implements Serializable {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override

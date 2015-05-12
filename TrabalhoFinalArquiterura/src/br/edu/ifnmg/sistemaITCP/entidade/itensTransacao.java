@@ -6,11 +6,13 @@
 package br.edu.ifnmg.sistemaITCP.entidade;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -27,7 +29,10 @@ public class itensTransacao implements Serializable {
     @Column(name = "quantidade")
     private int quantidade;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     private Produto produto;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Transacao transacao;
 
     public Long getId() {
