@@ -5,13 +5,23 @@
  */
 package br.edu.ifnmg.sistemaITCP.dataAccess;
 
-import br.edu.ifnmg.sistemaITCP.entidade.Associacao;
-import br.edu.ifnmg.sistemaITCP.entidade.repositorio.AssociacaoRepositorio;
+import br.edu.ifnmg.sistemaITCP.domainModel.Associacao;
+import br.edu.ifnmg.sistemaITCP.domainModel.repositorio.AssociacaoRepositorio;
+import java.util.List;
 
 /**
  *
  * @author Amauri
  */
 public class AssociacaoDAO extends DAOGenerico<Associacao> implements AssociacaoRepositorio {
+
+    public AssociacaoDAO() {
+        super(Associacao.class);
+    }
+
+    @Override
+    public List<Associacao> Buscar(Associacao filtro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

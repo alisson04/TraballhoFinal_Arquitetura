@@ -5,35 +5,36 @@
  */
 package br.edu.ifnmg.sistemaITCP.dataAccess;
 
-import br.edu.ifnmg.sistemaITCP.entidade.Pessoa;
-import br.edu.ifnmg.sistemaITCP.entidade.repositorio.PessoaRepositorio;
+import br.edu.ifnmg.sistemaITCP.domainModel.Pessoa;
+import br.edu.ifnmg.sistemaITCP.domainModel.repositorio.PessoaRepositorio;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
  * @author Amauri
  */
-public class PessoaDAO extends DAOGenerico<Pessoa> implements PessoaRepositorio{
+public class PessoaDAO extends DAOGenerico<Pessoa> implements PessoaRepositorio {
 
-    
-    @Override
-    public boolean salvar(Pessoa obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PessoaDAO() {
+        super(Pessoa.class);
     }
 
     @Override
-    public Pessoa abrir(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Pessoa> Buscar(Pessoa filtro) {
+        return Like("nome", filtro.getNome())
+               .IgualA("id", filtro.getId())
+               .IgualA("cpf", filtro.getCpf())
+               .OrderBy("nome", "ASC")
+               .Buscar(filtro);
     }
 
     @Override
-    public boolean apagar(Pessoa obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Pessoa AbrirPorCPF(String cpf) {
+        Query consulta = manager.createQuery("select o from Cliente o "
+                + "where o.cpf = :cpf");
+        consulta.setParameter("cpf", cpf);
+        return (Pessoa)consulta.getSingleResult();
     }
 
-   // @Override
-    //public List<T> buscar(Pessoa filtro) {
-      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   // }
-    
 }

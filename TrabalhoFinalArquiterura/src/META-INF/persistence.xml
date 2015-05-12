@@ -2,21 +2,21 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="TrabalhoFinal_Arquiterura_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Usuario</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Produto</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Funcionario</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.GrupoSolidario</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Transacao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.itensTransacao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Emprestimo</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Associacao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Cooperativa</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Doacao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Atividade</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Pessoa</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.Acao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.ParticipaAcao</class>
-    <class>br.edu.ifnmg.sistemaITCP.entidade.ParticipaAtividade</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Associacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.GrupoSolidario</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.itensTransacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Emprestimo</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Cooperativa</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Usuario</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Transacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Doacao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Acao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Atividade</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Funcionario</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Produto</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.ParticipaAtividade</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.ParticipaAcao</class>
+    <class>br.edu.ifnmg.sistemaITCP.domainModel.Pessoa</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgdb_arquitetura?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value=""/>
