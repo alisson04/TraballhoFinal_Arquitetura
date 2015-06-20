@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="./Template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                >
+
+    <ui:define name="content">
+        <p:panel>
+            <f:facet name="header">
+                Editar Usuario
+            </f:facet>
+            <p:panelGrid columns="2">
+                Usuario:
+                <p:inputText value="#{usuarioController.entidade.userName}" />
+                Senha:
+                <p:inputText value="#{usuarioController.entidade.password}" />
+
+            </p:panelGrid>
+
+            <p:commandButton value="Salvar" onclick="msgSalvar.show();" />
+            <p:commandButton value="Apagar" onclick="msgApagar.show();" />
+            <p:commandButton value="Voltar" action="#{usuarioController.voltar()}" />
+            <p:commandButton value="Novo" action="#{usuarioController.novo()}" />
+
+            <p:confirmDialog id="confirmaSalvar" message="Deseja realmente salvar as alterações?"  
+                             header="Confirmação" severity="alert" widgetVar="msgSalvar">  
+
+                <p:commandButton ajax="false" value="SIM" action="#{usuarioController.salvar()}" />  
+                <p:commandButton value="NÃO" onclick="msgSalvar.hide();" type="button" />   
+            </p:confirmDialog>  
+
+            <p:confirmDialog id="confirmaApagar" message="Deseja realmente apagar o registro?"  
+                             header="Confirmação" severity="alert" widgetVar="msgApagar">  
+
+                <p:commandButton ajax="false" value="SIM" action="#{usuarioController.apagar()}" />  
+                <p:commandButton value="NÃO" onclick="msgApagar.hide();" type="button" />   
+            </p:confirmDialog>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
