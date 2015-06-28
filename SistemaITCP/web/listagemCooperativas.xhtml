@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplatePaginasInternas.xhtml">
+
+            <ui:define name="content">
+                <p:panel>
+                    <f:facet name="header">
+                        Buscar Cooperativas
+                    </f:facet>
+                    <p:panelGrid columns="2">
+                        Nome:
+                        <p:inputText value="#{cooperativaController.filtro.nome}" />
+                        CNPJ:
+                        <p:inputText value="#{cooperativaController.filtro.cnpj}" />
+
+
+                    </p:panelGrid>
+
+                    <ui:include src="./componentes/botoesListagem.xhtml">
+                        <ui:param name="controller" value="#{cooperativaController}" />
+                    </ui:include>
+
+                    <br></br>
+                    <br></br>
+                    <p:panel>
+                        <f:facet name="header">
+                            Cooperativas Cadastradas
+                        </f:facet>
+
+
+                        <p:dataTable value="#{cooperativaController.listagem}" var="item" emptyMessage="Não há registros." paginator="true" rows="6">
+
+                            <p:column headerText="Código">
+                                #{item.id}
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                #{item.nome}
+                            </p:column>
+
+                            <p:column headerText="CNPJ">
+                                #{item.cnpj}
+                            </p:column>
+
+                            <p:column headerText="Telefone">
+                                #{item.telefone}
+                            </p:column>
+
+                            <p:column headerText="Endereço">
+                                #{item.endereco}
+                            </p:column>
+
+                            <p:column headerText="Capital Inicial">
+                                #{item.capitalInicial}
+                            </p:column>
+
+                            <p:column headerText="Editar">
+                                <p:commandButton value="Editar" action="#{cooperativaController.abrir(item)}"/>
+                            </p:column>
+
+
+                        </p:dataTable> 
+                    </p:panel>
+                </p:panel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

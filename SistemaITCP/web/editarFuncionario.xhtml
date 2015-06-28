@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados do Funcionário
+            </f:facet>
+
+            <p:panelGrid columns="2">
+
+                Nome:
+                <p:inputText value="#{funcionarioController.entidade.nome}" />    
+                CPF
+                <p:inputText value="#{funcionarioController.entidade.cpf}" />     
+
+
+                Cargo:
+                <p:selectOneMenu value="#{funcionarioController.entidade.cargo}" required="true"> 
+                    <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
+                    <f:selectItem itemLabel="Coordenador" itemValue="Coordenador"/>
+                    <f:selectItem itemLabel="Tecnico" itemValue="Tecnico"/> 
+                    <f:selectItem itemLabel="Estagiario" itemValue="Estagiario"/> 
+                </p:selectOneMenu>  
+
+
+                Telefone:
+                <p:inputText value="#{funcionarioController.entidade.telefone}" />
+
+                Tipo:
+                <p:selectOneMenu value="#{funcionarioController.entidade.tipo}" required="true"> 
+                    <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
+                    <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/> 
+                </p:selectOneMenu>  
+
+                Endereco:
+                <p:inputText value="#{funcionarioController.entidade.endereco}" />
+                RG:
+                <p:inputText value="#{funcionarioController.entidade.rg}" />
+
+
+            </p:panelGrid>
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{funcionarioController}" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+

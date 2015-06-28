@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados do Empréstimo
+            </f:facet>
+            <p:panelGrid columns="2">
+
+                Data de Recebimento:
+                <p:calendar value="#{emprestimoController.entidade.dataRecebimento}" required="false"
+                            label="Data de Recebimento" pattern="dd/MM/yyyy" locale="pt_BR"/>  
+
+                Data de Pagamento:
+                <p:calendar value="#{emprestimoController.entidade.dataPagamento}" required="false"
+                            label="Data de Pagamento" pattern="dd/MM/yyyy" locale="pt_BR"/>  
+
+                Valor Total:
+                <p:inputText value="#{emprestimoController.entidade.valorTotal}" />
+                Banco:
+                <p:inputText value="#{emprestimoController.entidade.banco}" />
+                Juros:
+                <p:inputText value="#{emprestimoController.entidade.jurosMensal}" />
+
+                Cooperativa:
+                <p:selectOneMenu value="#{emprestimoController.entidade.cooperativa}"
+                                 converter="#{cooperativaConverter}" required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/>      
+                    <f:selectItems value="#{cooperativaController.listagem}"  
+                                   var="coop"  
+                                   itemLabel="#{coop.nome}"  
+                                   itemValue="#{cooperativa}"/>    
+                </p:selectOneMenu>  
+
+            </p:panelGrid>
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{emprestimoController}" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+

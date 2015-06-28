@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados da Cooperativa
+            </f:facet>
+
+            <p:panelGrid columns="2">
+                Nome:
+                <p:inputText value="#{cooperativaController.entidade.nome}" />    
+                CNPJ:
+                <p:inputText value="#{cooperativaController.entidade.cnpj}" />          
+                Endereco:
+                <p:inputText value="#{cooperativaController.entidade.endereco}" />
+                Telefone:
+                <p:inputText value="#{cooperativaController.entidade.telefone}" />
+                Capital Inicial:
+                <p:inputText value="#{cooperativaController.entidade.capitalInicial}" />
+
+            </p:panelGrid>
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{cooperativaController}" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+

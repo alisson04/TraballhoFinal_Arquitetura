@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados do Usuário
+            </f:facet>
+
+            <p:panelGrid columns="2">
+
+                Usuario:
+                <p:inputText value="#{usuarioController.entidade.userName}" />
+                Senha:
+                <p:inputText value="#{usuarioController.entidade.password}" />
+
+                Funcionario:
+                <p:selectOneMenu value="#{usuarioController.entidade.funcionario}"
+                                 converter="#{funcionarioConverter}" required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/>      
+                    <f:selectItems value="#{funcionarioController.listagem}"  
+                                   var="func"  
+                                   itemLabel="#{func.nome}"  
+                                   itemValue="#{funcionario}"/>    
+                </p:selectOneMenu>  
+
+            </p:panelGrid>
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{usuarioController}" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+
