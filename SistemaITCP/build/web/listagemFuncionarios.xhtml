@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplatePaginasInternas.xhtml">
+
+            <ui:define name="content">
+                <p:panel>
+
+                    <f:facet name="header">
+                        Buscar Funcionário
+                    </f:facet>
+
+                    <p:panelGrid columns="2">
+
+                        Nome:
+                        <p:inputText value="#{funcionarioController.filtro.nome}" />
+                        CPF:
+                        <p:inputText value="#{funcionarioController.filtro.cpf}" />
+
+                    </p:panelGrid>
+
+                    <ui:include src="./componentes/botoesListagem.xhtml">
+                        <ui:param name="controller" value="#{funcionarioController}" />
+                    </ui:include>
+
+                    <br></br>
+                    <br></br>
+                    <p:panel>
+                        <f:facet name="header">
+                           Funcionários Cadastrados
+                        </f:facet>
+
+
+                        <p:dataTable value="#{funcionarioController.listagem}" var="item" emptyMessage="Não há registros." paginator="true" rows="6">
+
+                            <p:column headerText="Código">
+                                #{item.id}
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                #{item.nome}
+                            </p:column>
+
+                            <p:column headerText="CPF">
+                                #{item.cpf}
+                            </p:column>
+
+                            <p:column headerText="Cargo">
+                                #{item.cargo}
+                            </p:column>
+
+                            <p:column headerText="Telefone">
+                                #{item.telefone}
+                            </p:column>
+
+                            <p:column headerText="Endereço">
+                                #{item.telefone}
+                            </p:column>
+
+                            <p:column headerText="RG">
+                                #{item.rg}
+                            </p:column>
+
+                            <p:column headerText="Tipo">
+                                #{item.tipo}
+                            </p:column>
+
+                        
+
+
+                            <p:column headerText="Editar">
+                                <p:commandButton value="Editar" action="#{funcionarioController.abrir(item)}"/>
+                            </p:column>
+
+
+                        </p:dataTable> 
+                    </p:panel>
+                </p:panel>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

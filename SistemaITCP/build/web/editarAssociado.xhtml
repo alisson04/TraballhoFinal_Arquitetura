@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados do Associado
+            </f:facet>
+
+            <p:panelGrid columns="2">
+
+                Nome:
+                <p:inputText value="#{associadoController.entidade.nome}" />    
+                CPF
+                <p:inputText value="#{associadoController.entidade.cpf}" />          
+
+                Telefone:
+                <p:inputText value="#{associadoController.entidade.telefone}" />
+
+                Tipo:
+                <p:selectOneMenu value="#{associadoController.entidade.tipo}" required="true"> 
+                    <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
+                    <f:selectItem itemLabel="Associado" itemValue="Associado"/> 
+                </p:selectOneMenu>  
+
+
+                Endereco:
+                <p:inputText value="#{associadoController.entidade.endereco}" />
+                RG:
+                <p:inputText value="#{associadoController.entidade.rg}" />
+
+
+                Associação:
+                <p:selectOneMenu value="#{associadoController.entidade.associacao}"
+                                 converter="#{associacaoConverter}" required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/>      
+                    <f:selectItems value="#{associacaoController.listagem}"  
+                                   var="asso"  
+                                   itemLabel="#{asso.nome}"  
+                                   itemValue="#{associacao}"/>    
+                </p:selectOneMenu>  
+            </p:panelGrid>
+
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{associadoController}" />
+            </ui:include>
+
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+

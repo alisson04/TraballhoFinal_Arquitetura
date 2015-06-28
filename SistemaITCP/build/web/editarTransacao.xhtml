@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados da Transacao
+            </f:facet>
+            <p:panelGrid columns="2">
+                Tipo
+                <p:inputText value="" />
+
+                Valor
+                <p:inputText value="" />
+
+                Data da Transacao
+                <p:inputText value="" />
+
+                Grupo Solidario Responsavel
+                <p:selectOneMenu id="teste" value="" style="width:125px">
+                 
+                </p:selectOneMenu>
+
+
+            </p:panelGrid>
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+

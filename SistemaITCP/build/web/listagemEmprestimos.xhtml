@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplatePaginasInternas.xhtml">
+
+            <ui:define name="content">
+                <p:panel>
+                    <f:facet name="header">
+                        Buscar Empréstimos
+                    </f:facet>
+                    <p:panelGrid columns="2">
+                        Banco
+                        <p:inputText value="#{emprestimoController.filtro.banco}" />
+
+                    </p:panelGrid>
+
+                    <ui:include src="./componentes/botoesListagem.xhtml">
+                        <ui:param name="controller" value="#{emprestimoController}" />
+                    </ui:include>
+
+                    <br></br>
+                    <br></br>
+                    <p:panel>
+                        <f:facet name="header">
+                            Empréstimos Cadastrados
+                        </f:facet>
+                        <p:dataTable value="#{emprestimoController.listagem}"  var="item" emptyMessage="Não há registros." paginator="true" rows="6">
+
+                            <p:column headerText="Código" >
+                                #{item.id}
+                            </p:column>
+
+                            <p:column headerText="Banco" >
+                                #{item.banco}
+                            </p:column>
+
+                            <p:column headerText="Data Recebimento">
+                                #{item.dataRecebimento}
+                            </p:column>
+
+                            <p:column headerText="Data Pagamento">
+                                #{item.dataPagamento}
+                            </p:column>
+
+                            <p:column headerText="Valor Total" >
+                                #{item.valorTotal}
+                            </p:column>
+
+                            <p:column headerText="Juros Mensal">
+                                #{item.jurosMensal}
+                            </p:column>
+
+                            <p:column headerText="Cooperativa">
+                                #{item.cooperativa.nome}
+                            </p:column>
+
+
+
+
+                            <p:column headerText="Editar">
+                                <p:commandButton value="Editar" action="#{emprestimoController.abrir(item)}" />
+                            </p:column>
+
+
+                        </p:dataTable> 
+                    </p:panel>
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

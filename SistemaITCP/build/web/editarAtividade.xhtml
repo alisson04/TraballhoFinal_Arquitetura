@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./TemplatePaginasInternas.xhtml">
+
+
+
+    <ui:define name="content">
+
+        <p:panel>
+            <f:facet name="header">
+                Dados da Atividade
+            </f:facet>
+
+            <p:panelGrid columns="2">
+
+                Nome da Atividade:
+                <p:inputText value="#{atividadeController.entidade.nomeAtividade}" />    
+
+                Descrição da Atividade:
+                <p:inputTextarea value="#{atividadeController.entidade.descricao}"/>   
+
+                Data de Inicio:
+                <p:calendar value="#{atividadeController.entidade.dataInicio}" required="false"
+                            label="" pattern="dd/MM/yyyy" locale="pt_BR"/>  
+
+
+                Data de Término:
+                <p:calendar value="#{atividadeController.entidade.dataTermino}" required="false"
+                            label="Data de Pagamento" pattern="dd/MM/yyyy" locale="pt_BR"/>  
+
+
+                Funcionário Responsável:
+                <p:selectOneMenu value="#{atividadeController.entidade.funcionario}"
+                                 converter="#{funcionarioConverter}" required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/>      
+                    <f:selectItems value="#{funcionarioController.listagem}"  
+                                   var="func"  
+                                   itemLabel="#{func.nome}"  
+                                   itemValue="#{funcionario}"/>    
+                </p:selectOneMenu>  
+
+                Grupo Solidário Responsável:
+                <p:selectOneMenu value="#{atividadeController.entidade.grupoSolidario}"
+                                 converter="#{grupoConverter}"  required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/> 
+
+                    <f:selectItems value="#{cooperativaController.listagem}"  
+                                   var="coop"  
+                                   itemLabel="#{coop.nome}"  
+                                   itemValue="#{cooperativa}"/>    
+
+                    <f:selectItems value="#{associacaoController.listagem}"  
+                                   var="asso"  
+                                   itemLabel="#{asso.nome}"  
+                                   itemValue="#{associacao}"/>    
+
+                </p:selectOneMenu>  
+
+            </p:panelGrid>
+
+
+            <ui:include src="./componentes/botoesEditar.xhtml">
+                <ui:param name="controller" value="#{atividadeController}" />
+            </ui:include>
+
+        </p:panel>
+    </ui:define>
+
+</ui:composition>
+
