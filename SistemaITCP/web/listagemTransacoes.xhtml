@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./TemplatePaginasInternas.xhtml">
+
+            <ui:define name="content">
+                <p:panel>
+                    <f:facet name="header">
+                        Buscar Transações
+                    </f:facet>
+                    <p:panelGrid columns="2">
+                        Tipo: 
+                        <p:inputText value="#{transacaoController.filtro.tipo}" />
+
+                    </p:panelGrid>
+
+                    <ui:include src="./componentes/botoesListagem.xhtml">
+                        <ui:param name="controller" value="#{transacaoController}" />
+                    </ui:include>
+
+                    <br></br>
+                    <br></br>
+                    <p:panel>
+                        <f:facet name="header">
+                            Transações Cadastradas
+                        </f:facet>
+                        <p:dataTable value="#{transacaoController.listagem}"  var="item" emptyMessage="Não há registros." paginator="true" rows="6">
+
+                            <p:column headerText="Código" >
+                                #{item.id}
+                            </p:column>
+
+                            <p:column headerText="Tipo">
+                                #{item.tipo}
+                            </p:column>
+
+                            <p:column headerText="Data">
+                                #{item.dataTransacao}
+                            </p:column>
+
+                            <p:column headerText="Grupo Solidario">
+                                #{item.grupoSolidario.nome}
+                            </p:column>
+
+                            <p:column headerText="Valor">
+                                #{item.valor}
+                            </p:column> 
+
+                            <p:column headerText="Editar">
+                                <p:commandButton value="Editar" action="#{transacaoController.abrir(item)}" />
+                            </p:column>
+
+
+                        </p:dataTable> 
+                    </p:panel>
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

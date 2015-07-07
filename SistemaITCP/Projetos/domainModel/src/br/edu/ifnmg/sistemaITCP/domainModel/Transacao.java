@@ -1,19 +1,20 @@
-
 package br.edu.ifnmg.sistemaITCP.domainModel;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 @Entity
 public class Transacao implements Serializable {
@@ -35,6 +36,13 @@ public class Transacao implements Serializable {
 
     @ManyToOne
     private GrupoSolidario grupoSolidario;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Produto> produtos;
+
+    public Transacao() {
+
+    }
 
     public Long getId() {
         return id;
@@ -74,6 +82,27 @@ public class Transacao implements Serializable {
 
     public void setGrupoSolidario(GrupoSolidario grupoSolidario) {
         this.grupoSolidario = grupoSolidario;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public void addProdutos(Produto prod) {
+        if (produtos == null) {
+            produtos = new ArrayList<Produto>();
+        }
+        produtos.add(prod);
+    }
+
+    public void removeProdutos(Produto prod) {
+        if (produtos.contains(prod)) {
+            produtos.remove(prod);
+        }
     }
 
     @Override

@@ -4,39 +4,113 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="./TemplatePaginasInternas.xhtml">
-
+                template="./TemplatePaginasInternas.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 
     <ui:define name="content">
 
         <p:panel>
+
             <f:facet name="header">
-                Dados da Transacao
+                Dados da Transação
             </f:facet>
+
+            <p:panelGrid columns="2" >
+
+                Tipo:
+                <p:selectOneMenu value="#{transacaoController.entidade.tipo}" required="true"> 
+                    <f:selectItem itemLabel="Selecione" itemValue="Selecione"/>
+                    <f:selectItem itemLabel="Compra" itemValue="Compra"/> 
+                    <f:selectItem itemLabel="Venda" itemValue="Venda"/> 
+                </p:selectOneMenu>  
+
+
+
+                Grupo Solidario Responsável:
+                <p:selectOneMenu value="#{transacaoController.entidade.grupoSolidario}"
+                                 converter="#{grupoConverter}"  required="true"> 
+
+                    <f:selectItem itemLabel="Selecione ..." itemValue=""/> 
+
+                    <f:selectItems value="#{cooperativaController.listagem}"  
+                                   var="coop"  
+                                   itemLabel="#{coop.nome}"  
+                                   itemValue="#{cooperativa}"/>    
+
+                    <f:selectItems value="#{associacaoController.listagem}"  
+                                   var="asso"  
+                                   itemLabel="#{asso.nome}"  
+                                   itemValue="#{associacao}"/>    
+
+                </p:selectOneMenu>  
+
+
+
+                Valor:
+                <p:inputText value="#{transacaoController.entidade.valor}" />
+
+                Data da Transação:
+                <p:calendar value="#{transacaoController.entidade.dataTransacao}" required="false"
+                            label="Data da transacao" pattern="dd/MM/yyyy" locale="pt_BR"/>  
+            </p:panelGrid>
+
+
+        </p:panel>
+        <p:panel>
+            <f:facet name="header">
+                Produtos da Transação
+            </f:facet>
+
             <p:panelGrid columns="2">
-                Tipo
-                <p:inputText value="" />
 
-                Valor
-                <p:inputText value="" />
+                Nome do Produto:
+                <p:inputText value="#{transacaoController.produto.nome}" />
 
-                Data da Transacao
-                <p:inputText value="" />
+                Descrição do Produto:
+                <p:inputTextarea value="#{transacaoController.produto.descricao}"/>   
 
-                Grupo Solidario Responsavel
-                <p:selectOneMenu id="teste" value="" style="width:125px">
-                 
-                </p:selectOneMenu>
-
+                Valor da Unidade:
+                <p:inputText value="#{transacaoController.produto.valorUnitario}" />
 
             </p:panelGrid>
 
-            <ui:include src="./componentes/botoesEditar.xhtml">
-                <ui:param name="controller" value="" />
-            </ui:include>
+ 
+
+            <p:commandButton ajax="false" value="Adicionar"  action="#{transacaoController.addProduto()}">
+
+            </p:commandButton>
+
+  
+            <p:dataTable id="produtos" var="prod" value="#{transacaoController.entidade.produtos}" emptyMessage="Não há registros." paginator="true" rows="6" >
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{prod.nome}" />
+                </p:column>
+
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{prod.descricao}" />
+                </p:column>
+
+                <p:column headerText="Valor">
+                    <h:outputText value="#{prod.valorUnitario}" />
+                </p:column>
+                <p:column headerText="Ação">
+                    <p:commandButton ajax="false" value="Remover"  action="#{transacaoController.RemoverProduto(prod)}">
+
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
 
         </p:panel>
+
+
+        <ui:include src="./componentes/botoesEditar.xhtml">
+            <ui:param name="controller" value="#{transacaoController}" />
+        </ui:include>
+
+
     </ui:define>
 
 </ui:composition>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Produtos</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <p:dataTable var="prod" value="#{produtoController.listagem}">
+                <p:column headerText="Código">
+                    <h:outputText value="#{prod.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{prod.nome}" />
+                </p:column>
+
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{prod.descricao}" />
+                </p:column>
+
+                <p:column headerText="Valor">
+                    <h:outputText value="#{prod.valorUnitario}" />
+                </p:column>
+
+                <p:column headerText="Selecionar Produto">
+                    <p:commandButton icon="ui-icon-search" actionListener="#{transacaoController.selectCarFromDialog(prod)}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+
+</html>

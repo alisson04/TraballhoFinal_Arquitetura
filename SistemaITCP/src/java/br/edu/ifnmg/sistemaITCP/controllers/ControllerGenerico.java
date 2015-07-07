@@ -58,7 +58,6 @@ public class ControllerGenerico<T> {
 
     protected void MensagemSucesso(String titulo, String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
-
         FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, titulo);
         context.addMessage(null, m);
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -78,7 +77,6 @@ public class ControllerGenerico<T> {
         } else {
             MensagemErro("Erro!", "Consulte o administrador do sistema!");
         }
-
     }
 
     public String apagar() {
