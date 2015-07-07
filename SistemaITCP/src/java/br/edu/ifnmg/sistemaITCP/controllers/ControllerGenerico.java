@@ -80,16 +80,30 @@ public class ControllerGenerico<T> {
     }
 
     public String apagar() {
-        if (dao.Apagar(entidade)) {
-            MensagemSucesso("Sucesso!", "Registro removido com sucesso!");
-            return paginaListagem;
-        } else {
-            MensagemErro("Erro!", "Consulte o administrador do sistema!");
+        try {
+            if (dao.Apagar(entidade)) {
+                MensagemSucesso("Sucesso!", "Registro removido com sucesso!");
+                return paginaListagem;
+            } else {
+                MensagemErro("Erro!", "Consulte o administrador do sistema!");
+                return null;
+            }
+        } catch (Exception ex) {
+            MensagemErro(ex.getMessage(), "Consulte o administrador do sistema!");
             return null;
         }
-
     }
 
+    /*public String apagar() {
+     if (dao.Apagar(entidade)) {
+     MensagemSucesso("Sucesso!", "Registro removido com sucesso!");
+     return paginaListagem;
+     } else {
+     MensagemErro("Erro!", "Consulte o administrador do sistema!");
+     return null;
+     }
+
+     }*/
     public String voltar() {
         return paginaListagem;
     }
